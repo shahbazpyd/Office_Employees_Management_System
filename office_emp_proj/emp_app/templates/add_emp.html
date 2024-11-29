@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Sets the character encoding for the HTML document to UTF-8, which supports a wide range of characters. -->
+    <meta charset="UTF-8">
+    <!-- Configures the viewport for responsiveness, ensuring the page scales properly on different devices. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Links to Bootstrap CSS for styling from a CDN (Content Delivery Network). -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Loads static files (like CSS and images) from our Django project. -->
+    {% load static %}
+    <!-- Links to our custom CSS stylesheet for additional styling. -->
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    <!-- Sets the title that appears in the browser tab. -->
+    <title>Add Employee</title>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Creates a container for our content, providing structure and styling with Bootstrap classes. -->
+        <h1>Office Employee Management System!</h1>
+        <!-- Main heading for the page -->
+        <hr>
+        <!-- Horizontal line for visual separation -->
+        <div class="buttons">
+            <!-- Links to different sections of the application using Bootstrap buttons. -->
+            <a class="btn btn-primary" href="{% url 'index' %}" role="banner">Home</a>
+            <a class="btn btn-primary" href="/all_emp" role="button">View All Employee</a>
+            <a class="btn btn-primary" href="/remove_emp" role="button">Remove An Employee</a>
+            <a class="btn btn-primary" href="/filter_emp" role="button">Filter An Employee</a>
+        </div>
+        <hr>
+        <!-- Horizontal line for visual separation -->
+        <h1>Add An Employee!</h1>
+        <!-- Heading for this specific section. -->
+        <hr>
+        <!-- Horizontal line for visual separation. -->
+
+        <!-- Form for adding a new employee -->
+        <form action="/add_emp" method="post">
+            <!-- Django template tag to prevent Cross-Site Request Forgery attacks.  Essential for security! -->
+            {% csrf_token %}
+
+            <!-- Input fields for employee details -->
+            <label for="first_name">First Name</label><br>
+            <input type="text" id="first_name" name="first_name" value="{{ first_name }}"><br>
+
+            <label for="last_name">Last Name</label><br>
+            <input type="text" id="last_name" name="last_name" value="{{ last_name }}"><br>
+
+            <label for="salary">Salary</label><br>
+            <input type="number" id="salary" name="salary" value="{{ salary }}"><br>
+
+            <label for="dept">Department ID</label><br> <input type="number" id="dept" name="dept"
+                value="{{ dept }}"><br>
+
+            <label for="role">Role ID</label><br> <input type="number" id="role" name="role" value="{{ role }}"><br>
+
+            <label for="bonus">Bonus</label><br>
+            <input type="number" id="bonus" name="bonus" value="{{ bonus }}"><br>
+
+            <label for="phone">Phone Number</label><br>
+            <input type="number" id="phone" name="phone" value="{{ phone }}"><br>
+
+            <hr>
+            <!-- Horizontal line for visual separation -->
+
+            <!-- Submit button to add the employee -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    </center>
+
+
+    <!-- Includes Bootstrap JavaScript for interactive components (although none are used directly on this page, it's good practice to include it). -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>

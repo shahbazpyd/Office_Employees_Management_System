@@ -1,0 +1,211 @@
+/* General styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    /* Modern font stack */
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    /* Light gray background */
+    color: #333;
+    /* Dark gray text */
+    margin: 0;
+    padding: 0;
+    
+}
+
+.container {
+    max-width: 960px;
+    /* Limit container width */
+    margin: 0 auto;
+    /* Center the container */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.img-container{
+    position: relative;
+    max-width: 960px;   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    padding: 30px; 
+}
+
+.img-container img {
+    display: block; /* Prevents potential whitespace issues */
+    width: 100%; /* Or a specific width */
+    height: auto; /* Maintains aspect ratio */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.5); /* Add the shadow */
+}
+
+
+.img-container h1 {
+    position: absolute; /* Positions relative to .img-container */
+    top: 15%;  /* Adjust vertical position */
+    /* left: 50%; Adjust horizontal position */
+    /* transform: translate(-50%, -50%); Centers the text */
+    color: #2980b9; /* Or any color you want */
+    /* Add other styling as needed (font size, shadow, etc.) */
+}
+/* Typography */
+h1,
+h2,
+h3 {
+    font-weight: 500;
+    /* Slightly bolder headings */
+    color: #2c3e50;
+    /* Darker heading color */
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+/* Links */
+a {
+    color: #3498db;
+    /* Blue link color */
+    text-decoration: none;
+    /* Remove underlines */
+    transition: color 0.3s ease;
+    /* Smooth color transition on hover */
+}
+
+a:hover {
+    color: #2980b9;
+    /* Darker blue on hover */
+}
+
+
+/* Buttons */
+.btn-primary {
+    background-color: #3498db;
+    /* Blue button color */
+    border-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    /* Make button links look like buttons */
+    display: inline-block;
+    /* Prevent buttons from stretching full width */
+    margin: 5px;
+    /* Add some space between buttons */
+    transition: background-color 0.3s ease;
+    /* Smooth transition on hover */
+}
+
+.btn-primary:hover {
+    background-color: #2980b9;
+    /* Darker blue on hover */
+}
+
+/* Tables */
+.table {
+    width: 100%;
+    max-width: 100%;
+    /* Ensure table doesn't overflow */
+    margin-bottom: 20px;
+    border-collapse: collapse;
+    background-color: white;
+    /* White table background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
+}
+
+
+.table th,
+.table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.table thead th {
+    background-color: #3498db;
+    /* Blue table header */
+    color: white;
+    font-weight: 500;
+}
+
+/* Forms */
+label {
+    display: block;
+    /* Place labels above inputs */
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+
+
+/* Responsive Design (Media Queries) */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        /* Reduce padding on smaller screens */
+    }
+
+    h1 {
+        font-size: 2em;
+        /* Smaller heading on smaller screens */
+    }
+
+    /* Stack table headers for better mobile viewing */
+    .table thead {
+        display: none;
+        /* Hide the table header row */
+    }
+
+    .table,
+    .table tbody,
+    .table tr,
+    .table td {
+        display: block;
+        /* Display table elements as blocks */
+        width: 100%;
+        /* Make each cell take full width */
+    }
+
+    .table tr {
+        margin-bottom: 15px;
+        /* Space between rows */
+    }
+
+    .table td {
+        text-align: right;
+        /* Align text to the right */
+        padding-left: 50%;
+        /* Add left padding for labels */
+        position: relative;
+    }
+
+
+    .table td::before {
+        /* Add header text as label before each cell */
+        content: attr(data-label);
+        /* Get label from data-label attribute */
+        position: absolute;
+        left: 0;
+        width: 50%;
+        padding-left: 15px;
+        font-weight: bold;
+        text-align: left;
+    }
+
+}
