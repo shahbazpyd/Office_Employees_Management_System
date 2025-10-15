@@ -17,7 +17,7 @@ body {
     /* Limit container width */
     margin: 0 auto;
     /* Center the container */
-    padding: 20px;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,7 +30,7 @@ body {
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    padding: 30px; 
+    
 }
 
 .img-container img {

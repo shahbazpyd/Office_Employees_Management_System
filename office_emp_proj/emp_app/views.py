@@ -2,6 +2,7 @@ from datetime import datetime
 
 from django.db.models import Q
 from django.shortcuts import render, HttpResponse
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from .models import Employee
 
@@ -12,9 +13,13 @@ def index(request):
 
 @login_required
 def all_emp(request):
-    emps = Employee.objects.all()
+    emp_list = Employee.objects.all()
+    paginator = Paginator(emp_list, 5)  # Show 5 employees per page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'emps': emps
+        'emps': page_obj
     }
     print(context)
     return render(request, 'view_all_emp.html', context)
@@ -81,7 +86,7 @@ def filter_emp(request):
 
 
 
-# emp_app/views.py
+
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
@@ -91,4 +96,6 @@ class SignUpView(generic.CreateView):
     success_url = reverse_lazy('login') # Redirect to login page after successful signup
     template_name = 'registration/signup.html'
 
-# ... your other views for the employee app
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')
