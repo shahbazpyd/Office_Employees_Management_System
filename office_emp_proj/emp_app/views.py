@@ -2,7 +2,7 @@ from datetime import datetime
 
 from django.db.models import Q
 from django.shortcuts import render, HttpResponse
-
+from django.contrib.auth.decorators import login_required
 from .models import Employee
 
 
@@ -10,7 +10,7 @@ from .models import Employee
 def index(request):
     return render(request, 'index.html')
 
-
+@login_required
 def all_emp(request):
     emps = Employee.objects.all()
     context = {
@@ -19,7 +19,7 @@ def all_emp(request):
     print(context)
     return render(request, 'view_all_emp.html', context)
 
-
+@login_required
 def add_emp(request):
     if request.method == "POST":
         first_name = request.POST['first_name']
@@ -38,7 +38,7 @@ def add_emp(request):
     else:
         return HttpResponse("Something Went Wrong!")
 
-
+@login_required
 def remove_emp(request, emp_id=0):
     if emp_id:
         try:
@@ -54,7 +54,7 @@ def remove_emp(request, emp_id=0):
     print(context)
     return render(request, 'remove_emp.html', context)
 
-
+@login_required
 def filter_emp(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -78,3 +78,17 @@ def filter_emp(request):
         return render(request, 'filter_emp.html')
     else:
         return HttpResponse("Something Went Wrong!")
+
+
+
+# emp_app/views.py
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views import generic
+
+class SignUpView(generic.CreateView):
+    form_class = UserCreationForm
+    success_url = reverse_lazy('login') # Redirect to login page after successful signup
+    template_name = 'registration/signup.html'
+
+# ... your other views for the employee app

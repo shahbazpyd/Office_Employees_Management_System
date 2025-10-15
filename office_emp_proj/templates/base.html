@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Office Employee Management{% endblock %}</title>
+</head>
+<body>
+    <nav>
+        <a href="/">Home</a>
+        {% if user.is_authenticated %}
+            <p>Hi {{ user.username }}!</p>
+            <a href="{% url 'logout' %}">Log Out</a>
+            <a class btn btn-primary href="accounts/password_change/" role="button">Change Password</a>
+
+        {% else %}
+            <a href="{% url 'login' %}">Log In</a>
+            <a href="{% url 'signup' %}">Sign Up</a>
+          
+        {% endif %}
+    </nav>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+</body>
+</html>

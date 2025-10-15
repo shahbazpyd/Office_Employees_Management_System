@@ -24,5 +24,8 @@ urlpatterns = [
     path('add_emp', views.add_emp, name='add_emp'),
     path('remove_emp', views.remove_emp, name='remove_emp'),
     path('remove_emp/<int:emp_id>', views.remove_emp, name='remove_emp'),
+    # path('remove_emp/', views.remove_emp, name='remove_emp_list'),
+    # path('remove_emp/<int:emp_id>/', views.remove_emp, name='remove_emp_confirm'),
     path('filter_emp', views.filter_emp, name='filter_emp'),
+    path('signup/', views.SignUpView.as_view(), name='signup'),
     ]
