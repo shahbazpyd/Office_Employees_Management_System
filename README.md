@@ -9,13 +9,17 @@ This project was a great introduction to the Django framework and how it integra
 * **Django Basics:**  I gained a basic understanding of Django's Model-View-Template (MVT) architecture.  I learned how to define models to represent my data (employees, departments, roles), create views to handle user requests and logic, and use templates to dynamically render HTML.
 * **HTML & CSS Fundamentals:** While I had some prior exposure to HTML and CSS, building this project solidified my understanding of structuring web pages and applying styles. I practiced using common HTML elements, CSS selectors, and the Bootstrap framework for layout and styling.
 * **CRUD Operations:** I implemented Create, Read, Update, and Delete functionalities for employee records, which was valuable practice in handling data persistence and user interactions.
+* **User Authentication:** Integrated Django's built-in authentication system (`django.contrib.auth`) to handle user registration, login, and logout, securing access to the application's features.
+* **Pagination:** Implemented Django's `Paginator` to efficiently display large sets of employee data across multiple pages, improving performance and user experience.
 * **Basic Filtering:** I added a filtering feature to search employees based on name, department, or role, giving me experience with processing user input and querying the database.
 * **Django Template Language:**  I learned to use Django's templating language to embed dynamic content within my HTML, including loops, conditional statements, and variables.
 * **Static Files in Django:**  I learned how to manage and serve static files like CSS and images within a Django project.
 
 ## Project Features
 
+* **User Authentication & Authorization:** Secure login, logout, and signup functionality. Core features like viewing and managing employees are now protected and only accessible to logged-in users.
 * **View All Employees:** Displays a list of all employees with details like name, salary, department, and role.
+* **Pagination:** The "View All Employees" page is now paginated to handle a large number of employee records gracefully, displaying them in manageable chunks.
 * **Add Employee:** A form to add new employees to the database.
 * **Remove Employee:** Functionality to delete employee records (though in a simple implementation, usually by ID).
 * **Filter Employees:**  Allows filtering employees based on various criteria.
@@ -23,9 +27,8 @@ This project was a great introduction to the Django framework and how it integra
 
 ## Future Improvements
 
-This project is a starting point, and there are several areas where I can improve it:
+This project is a starting point, and there are several areas where I can continue to improve it:
 
-* **User Authentication:** Add user authentication to secure the application.
 * **More Advanced Filtering:** Implement more sophisticated filtering options and search capabilities.
 * **Data Validation:** Improve data validation on input forms to prevent errors and ensure data integrity.
 * **UI Enhancements:** Improve the user interface with more interactive elements and better styling.
