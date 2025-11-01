@@ -5,7 +5,8 @@
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "15mb",
-        "build": "cd office_emp_proj && python3.9 manage.py migrate && python3.9 manage.py collectstatic --noinput"
+        "workPath": "office_emp_proj",
+        "build": "python3.9 manage.py migrate && python3.9 manage.py collectstatic --noinput"
       }
     }
   ],
