@@ -1,7 +1,7 @@
 {
   "builds": [
     {
-      "src": "office_emp_proj/wsgi.py",
+      "src": "office_emp_proj/office_emp_proj/wsgi.py",
       "use": "@vercel/python",
       "config": {
         "maxLambdaSize": "15mb",
@@ -10,6 +10,6 @@
     }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "office_emp_proj/wsgi.py" }
+    { "src": "/(.*)", "dest": "office_emp_proj/office_emp_proj/wsgi.py" }
   ]
 }
