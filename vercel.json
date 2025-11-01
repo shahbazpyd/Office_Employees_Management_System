@@ -7,15 +7,9 @@
         "maxLambdaSize": "15mb",
         "build": "python3.9 office_emp_proj/manage.py collectstatic --noinput"
       }
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "office_emp_proj/staticfiles" }
     }
   ],
   "routes": [
-    { "src": "/static/(.*)", "dest": "/static/$1" },
     { "src": "/(.*)", "dest": "office_emp_proj/wsgi.py" }
   ]
 }
