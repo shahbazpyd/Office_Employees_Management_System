@@ -5,17 +5,7 @@
 {% block content %}
     
         <div class="container">
-            <!-- Creates a container for structuring our content with Bootstrap -->
-            <h1>Office Employee Management System!</h1> <!-- Main heading of the page -->
-            <hr> <!-- Horizontal line for visual separation -->
-            <div class="buttons">
-            <!-- Navigation links using Bootstrap buttons for styling -->
-            <a class="btn btn-primary" href="{% url 'index' %}" role="banner">Home</a>
-            <a class="btn btn-primary" href="/add_emp" role="button">Add An Employee</a>
-            <a class="btn btn-primary" href="/remove_emp" role="button">Remove An Employee</a>
-            <a class="btn btn-primary" href="/filter_emp" role="button">Filter An Employee</a>
-            </div>
-            <hr> <!-- Another horizontal line -->
+            <div>
             <h1>All Employee Details</h1> <!-- Heading for the employee table -->
             <hr> <!-- Yet another horizontal line -->
 
@@ -84,6 +74,7 @@
                 </ul>
             </nav>
             {% endif %}
+            </div>
         </div>
 
 {% endblock %}

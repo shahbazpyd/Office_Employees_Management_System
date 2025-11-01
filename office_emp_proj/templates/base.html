@@ -1,48 +1,82 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        {% load static %} <!-- Django template tag to load static files -->
+    {% load static %} <!-- Django template tag to load static files -->
     <link rel="stylesheet" href="{% static 'CSS/style.css' %}"> <!--Link to our custom CSS stylesheet -->
     <title>{% block title %}Office Employee Management{% endblock %}</title>
 </head>
+
 <body style="padding-top: 56px;">
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #3498db;">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #3498db;" role="navigation" aria-label="Main navigation">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Employee Mgmt</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <!-- Left side: primary nav / user dropdown -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
-                    <!-- <li class="nav-item">
-                        <span class="navbar-text me-2 pt-4">Hi, {{ user.username }}!</span>
-                    </li>  -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'password_change' %}">Change Password</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userMenu" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Hi, {{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                            <li><a class="dropdown-item" href="/create_department">Create Dept</a></li>
+                            <li><a class="dropdown-item" href="/create_role">Create Role</a></li>
+                            <li><a class="dropdown-item" href="/add_emp">Add Employee</a></li>
+                            <li><a class="dropdown-item" href="/all_emp">View All Employees</a></li>
+                            <li><a class="dropdown-item" href="/remove_emp">Remove Employee</a></li>
+                            <li><a class="dropdown-item" href="/filter_emp">Filter Employee</a></li>
+                        </ul>
                     </li>
-                    <li class="nav-item">
-                        <form class="d-inline" action="{% url 'logout' %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="nav-link btn btn-link text-decoration-none">Log Out</button>
-                        </form>
-                    </li>
-                    {% else %}
+                    {% endif %}
+                </ul>
+
+                <!-- Right side: quick actions (visible on lg+) and auth controls -->
+                {% if user.is_authenticated %}
+                <div class="d-flex align-items-center">
+                    <div class="d-none d-lg-flex align-items-center me-3">
+                        <a class="btn btn-outline-light btn-sm me-1" href="/create_department">Create Dept</a>
+                        <a class="btn btn-outline-light btn-sm me-1" href="/create_role">Create Role</a>
+                        <a class="btn btn-outline-light btn-sm me-1" href="/add_emp">Add Employee</a>
+                        <a class="btn btn-outline-light btn-sm me-1" href="/all_emp">All Employees</a>
+                        <a class="btn btn-outline-light btn-sm me-1" href="/remove_emp">Remove Employee</a>
+                        <a class="btn btn-outline-light btn-sm" href="/filter_emp">Filter Employees</a>
+                    </div>
+
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'password_change' %}">Change Password</a>
+                        </li>
+                        <li class="nav-item">
+                            <form class="d-inline" action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link nav-link text-decoration-none">Log Out</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                {% else %}
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'login' %}">Log In</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'signup' %}" role="button">Sign Up</a>
+                        <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
                     </li>
-                    {% endif %}
                 </ul>
+                {% endif %}
             </div>
         </div>
     </nav>
-    <main class="container mt-4">
+    <main>
         {% block content %}
         {% endblock %}
     </main>
@@ -53,4 +87,5 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
 </body>
+
 </html>

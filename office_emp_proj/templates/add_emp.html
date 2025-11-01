@@ -4,57 +4,56 @@
 
 {% block content %}
     <div class="container">
-        <!-- Creates a container for our content, providing structure and styling with Bootstrap classes. -->
-        <h1>Office Employee Management System!</h1>
-        <!-- Main heading for the page -->
-        <hr>
-        <!-- Horizontal line for visual separation -->
-        <div class="buttons">
-            <!-- Links to different sections of the application using Bootstrap buttons. -->
-            <a class="btn btn-primary" href="{% url 'index' %}" role="banner">Home</a>
-            <a class="btn btn-primary" href="/all_emp" role="button">View All Employee</a>
-            <a class="btn btn-primary" href="/remove_emp" role="button">Remove An Employee</a>
-            <a class="btn btn-primary" href="/filter_emp" role="button">Filter An Employee</a>
-        </div>
-        <hr>
+        <div>
         <!-- Horizontal line for visual separation -->
         <h1>Add An Employee!</h1>
         <!-- Heading for this specific section. -->
         <hr>
         <!-- Horizontal line for visual separation. -->
 
-        <!-- Form for adding a new employee -->
-        <form action="/add_emp" method="post">
+        <form action="{% url 'add_emp' %}" method="post">
             <!-- Django template tag to prevent Cross-Site Request Forgery attacks.  Essential for security! -->
             {% csrf_token %}
 
-            <!-- Input fields for employee details -->
-            <label for="first_name">First Name</label><br>
-            <input type="text" id="first_name" name="first_name" value="{{ first_name }}"><br>
-
-            <label for="last_name">Last Name</label><br>
-            <input type="text" id="last_name" name="last_name" value="{{ last_name }}"><br>
-
-            <label for="salary">Salary</label><br>
-            <input type="number" id="salary" name="salary" value="{{ salary }}"><br>
-
-            <label for="dept">Department ID</label><br> <input type="number" id="dept" name="dept"
-                value="{{ dept }}"><br>
-
-            <label for="role">Role ID</label><br> <input type="number" id="role" name="role" value="{{ role }}"><br>
-
-            <label for="bonus">Bonus</label><br>
-            <input type="number" id="bonus" name="bonus" value="{{ bonus }}"><br>
-
-            <label for="phone">Phone Number</label><br>
-            <input type="number" id="phone" name="phone" value="{{ phone }}"><br>
-
-            <hr>
-            <!-- Horizontal line for visual separation -->
-
-            <!-- Submit button to add the employee -->
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="mb-3">
+                <label for="first_name" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="last_name" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="last_name" name="last_name" required>
+            </div>
+            <div class="mb-3">
+                <label for="salary" class="form-label">Salary</label>
+                <input type="number" class="form-control" id="salary" name="salary" required>
+            </div>
+            <div class="mb-3">
+                <label for="bonus" class="form-label">Bonus</label>
+                <input type="number" class="form-control" id="bonus" name="bonus" required>
+            </div>
+            <div class="mb-3">
+                <label for="phone" class="form-label">Phone Number</label>
+                <input type="number" class="form-control" id="phone" name="phone" required>
+            </div>
+            <div class="mb-3">
+                <label for="dept" class="form-label">Department</label>
+                <select class="form-select" id="dept" name="dept">
+                    {% for department in departments %}
+                    <option value="{{ department.id }}">{{ department.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" name="role">
+                    {% for role in roles %}
+                    <option value="{{ role.id }}">{{ role.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
         </form>
+        </div>
     </div>
  
 {% endblock content %}

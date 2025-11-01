@@ -4,6 +4,7 @@
 
 {% block content %}
     <div class="container"> <!-- Creates a container for our content, providing some structure -->
+        <div>
         {% if user.is_authenticated %}
         <h4 class="navbar-text">Hi, {{ user.username }}!</h4>
         {% endif %}
@@ -11,11 +12,12 @@
         <div class="img-container">
             <h1>Office Employee Management System!</h1> <!-- Main heading for the page -->
             <img src="{% static 'images/emp_desk4.jpg' %}"  alt="an image">
-            {% if user.is_authenticated %}
+            <!-- {% if user.is_authenticated %}
             <a class="btn btn-primary" href="/dashboard/" class="navbar-brand" role="button">Dashboard</a>
-            {% endif %}
+            {% endif %} -->
             
 
+        </div>
         </div>
         <!-- Horizontal rule for visual separation -->
         <!-- <div class="buttons">

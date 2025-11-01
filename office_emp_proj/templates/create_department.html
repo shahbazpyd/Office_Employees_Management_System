@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+<div class="container">
+
+    <div>
+        <!-- Creates a container for our content, providing structure and styling with Bootstrap classes. -->
+        <h1>Create Department!</h1>
+        <!-- Main heading for the page -->
+        <hr>
+        <!-- Horizontal line for visual separation -->
+        <!-- Form for creating a new department -->
+        <form action="/create_department/" method="post">
+            <!-- Django template tag to prevent Cross-Site Request Forgery attacks.  Essential for security! -->
+            {% csrf_token %}
+
+            <!-- Input field for department name -->
+            <label for="name">Department Name</label><br>
+            <input type="text" id="name" name="name" value="{{ name }}"><br>
+
+            <label for="location">Location</label><br>
+            <input type="text" id="location" name="location" value="{{ location }}"><br>
+
+            <hr>
+            <!-- Horizontal line for visual separation -->
+
+            <!-- Submit button to create the department -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
+    <div>
+        <h1>All Departments!</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for department in departments %}
+                <tr>
+                    <th scope="row">{{ department.id }}</th>
+                    <td>{{ department.name }}</td>
+                    <td>{{ department.location }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+</div>
+{% endblock content %}

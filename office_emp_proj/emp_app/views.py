@@ -5,6 +5,7 @@ from django.shortcuts import render, HttpResponse
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from .models import Employee
+from .models import Department, Role
 
 
 # Create your views here.
@@ -37,9 +38,16 @@ def add_emp(request):
         new_emp = Employee(first_name=first_name, last_name=last_name, salary=salary, bonus=bonus, phone=phone,
                            dept_id=dept, role_id=role, hire_date=datetime.now())
         new_emp.save()
-        return HttpResponse("Employee Added Successfully!")
+        return redirect('add_emp')
+        # return HttpResponse"Employee Added Successfully!")
     elif request.method == "GET":
-        return render(request, 'add_emp.html')
+        departments = Department.objects.all()
+        roles = Role.objects.all()
+        context = {
+            'departments': departments,
+            'roles': roles
+        }
+        return render(request, 'add_emp.html', context)
     else:
         return HttpResponse("Something Went Wrong!")
 
@@ -49,7 +57,8 @@ def remove_emp(request, emp_id=0):
         try:
             emp_to_be_removed = Employee.objects.get(id=emp_id)
             emp_to_be_removed.delete()
-            return HttpResponse("Employee Removed Successfully!")
+            return redirect('remove_emp')
+            # return HttpResponse("Employee Removed Successfully!")
         except:
             return HttpResponse("Something Went Wrong!")
     emps = Employee.objects.all()
@@ -90,12 +99,49 @@ def filter_emp(request):
 from django.contrib.auth.forms import UserCreationForm
 from django.urls import reverse_lazy
 from django.views import generic
+from django.shortcuts import redirect
 
 class SignUpView(generic.CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy('login') # Redirect to login page after successful signup
     template_name = 'registration/signup.html'
 
+# @login_required
+# def dashboard(request):
+#     return render(request, 'dashboard.html')
+
 @login_required
-def dashboard(request):
-    return render(request, 'dashboard.html')
+def create_department(request):
+    print("Inside create_department view with post")
+    if request.method == "POST":
+        name = request.POST['name']
+        location = request.POST['location']
+        new_dept = Department(name=name, location=location)
+        new_dept.save()
+        return redirect('create_department')
+    elif request.method == "GET":
+        print("Inside create_department view with get")
+        departments = Department.objects.all()
+        print(departments)
+        context = {
+            'departments': departments
+        }
+        return render(request, 'create_department.html', context)
+    else:
+        return HttpResponse("Something Went Wrong!")
+
+@login_required
+def create_role(request):
+    if request.method == "POST":
+        name = request.POST['name']
+        new_role = Role(name=name)
+        new_role.save()
+        return redirect('create_role')
+    elif request.method == "GET":
+        roles = Role.objects.all()
+        context = {
+            'roles': roles
+        }
+        return render(request, 'create_role.html', context)
+    else:
+        return HttpResponse("Something Went Wrong!")

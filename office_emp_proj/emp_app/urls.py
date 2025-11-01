@@ -28,5 +28,7 @@ urlpatterns = [
     # path('remove_emp/<int:emp_id>/', views.remove_emp, name='remove_emp_confirm'),
     path('filter_emp', views.filter_emp, name='filter_emp'),
     path('signup/', views.SignUpView.as_view(), name='signup'),
-    path('dashboard/', views.dashboard, name='dashboard'),
-    ]
+    # path('dashboard/', views.dashboard, name='dashboard'),
+    path('create_department/', views.create_department, name='create_department'),
+    path('create_role/', views.create_role, name='create_role'),
+]

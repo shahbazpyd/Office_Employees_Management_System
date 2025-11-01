@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %} 
+
+
+{% block content %}
+    <div class="container">
+        <div>
+        <!-- Creates a container for our content, providing structure and styling with Bootstrap classes. -->
+        <h1>Create Role!</h1>
+        <!-- Main heading for the page -->
+        <hr>
+        <!-- Horizontal line for visual separation -->
+        <!-- Form for creating a new department -->
+        <form action="/create_role/" method="post">
+            <!-- Django template tag to prevent Cross-Site Request Forgery attacks.  Essential for security! -->
+            {% csrf_token %}
+ 
+            <div class="mb-3">
+                <label for="name" class="form-label">Role Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+ 
+            <div class="d-grid">
+                <button type="submit" class="btn btn-primary">Create Role</button>
+            </div>
+        </form>
+        </div>
+                <div>
+            <h1>All Roles!</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+            
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for role in roles %}
+                    <tr>
+                        <th scope="row">{{ role.id }}</th>
+                        <td>{{ role.name }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

@@ -12,15 +12,12 @@ body {
     
 }
 
-.container {
+.container{
     max-width: 960px;
-    /* Limit container width */
-    margin: 0 auto;
-    /* Center the container */
-    
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10%;
 }
 .img-container{
     position: relative;
